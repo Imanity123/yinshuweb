@@ -1,0 +1,35 @@
+---
+interface Props {
+  id: string;
+  text: string;
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+  class?: string;
+}
+
+const { 
+  id, 
+  text, 
+  variant = 'primary',
+  disabled = false,
+  class: className = ''
+} = Astro.props;
+
+const baseStyles = "px-6 py-3 rounded-lg transition-all duration-200 text-base font-light shadow-sm hover:shadow-md disabled:opacity-50 disabled:cursor-not-allowed";
+const variantStyles = {
+  primary: "bg-primary-900 text-white hover:bg-primary-800",
+  secondary: "bg-white text-primary-900 border border-primary-200 hover:bg-primary-50"
+};
+---
+
+<button
+  id={id}
+  disabled={disabled}
+  class:list={[
+    baseStyles,
+    variantStyles[variant],
+    className
+  ]}
+>
+  {text}
+</button>

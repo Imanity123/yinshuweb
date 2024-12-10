@@ -1,0 +1,44 @@
+---
+import NavBar from '../components/NavBar.astro';
+import LoginModal from '../components/LoginModal.astro';
+import '../styles/fonts.css';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="隐书 - 文字的艺术转化" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <NavBar />
+    <slot />
+    <LoginModal />
+  </body>
+</html>
+<style is:global>
+  :root {
+    --text-primary: #1a1a1a;
+    --text-secondary: #4a4a4a;
+    --background: #ffffff;
+    --border: #e0e0e0;
+  }
+  html {
+    background: var(--background);
+    color: var(--text-primary);
+  }
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+</style>

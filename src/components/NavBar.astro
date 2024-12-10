@@ -1,0 +1,24 @@
+---
+import Logo from './Logo.astro';
+import UserMenu from './UserMenu.astro';
+---
+
+<nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-primary-200">
+  <div class="max-w-screen-xl mx-auto px-6">
+    <div class="flex justify-between items-center h-16">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center">
+          <Logo />
+        </a>
+      </div>
+      
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-primary-600 hover:text-primary-900 transition-colors duration-200 text-sm font-light">首页</a>
+        <a href="/reduce-ai" class="text-primary-600 hover:text-primary-900 transition-colors duration-200 text-sm font-light">降AI率</a>
+        <a href="/pricing" class="text-primary-600 hover:text-primary-900 transition-colors duration-200 text-sm font-light">价格</a>
+      </div>
+
+      <UserMenu />
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,30 @@
+---
+import FeatureCard from './FeatureCard.astro';
+
+const features = [
+  {
+    emoji: '🚀',
+    title: '秒速转化',
+    description: '一键优化，快速完成文本转换'
+  },
+  {
+    emoji: '🛡️',
+    title: '无痕隐形',
+    description: '彻底隐藏AIGC痕迹，确保自然流畅'
+  },
+  {
+    emoji: '🌍',
+    title: '全面兼容',
+    description: '支持国内外所有主流检测工具'
+  }
+];
+---
+<section class="features-section py-2">
+  <div class="container mx-auto px-6 max-w-screen-xl">
+    <div class="grid md:grid-cols-3 gap-12">
+      {features.map(feature => (
+        <FeatureCard {...feature} />
+      ))}
+    </div>
+  </div>
+</section>

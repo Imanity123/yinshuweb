@@ -1,0 +1,66 @@
+---
+---
+<div class="relative" id="userMenu">
+  <button class="hidden" id="loginButton">
+    <span class="inline-flex items-center justify-center px-5 py-2 rounded-full text-sm font-light text-white bg-primary-900 hover:bg-primary-800 transition-all duration-200 shadow-sm hover:shadow-md">
+      登录
+    </span>
+  </button>
+  
+  <button class="hidden" id="avatarButton">
+    <div class="w-8 h-8 rounded-full bg-primary-900 text-white flex items-center justify-center">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+      </svg>
+    </div>
+  </button>
+
+  <div id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-2">
+    <button id="logoutButton" class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+      退出登录
+    </button>
+  </div>
+</div>
+
+<script>
+  import { user, logout } from '../stores/auth';
+
+  const loginButton = document.getElementById('loginButton');
+  const avatarButton = document.getElementById('avatarButton');
+  const dropdownMenu = document.getElementById('dropdownMenu');
+
+  // Update UI based on auth state
+  user.subscribe(currentUser => {
+    if (currentUser) {
+      loginButton?.classList.add('hidden');
+      avatarButton?.classList.remove('hidden');
+    } else {
+      loginButton?.classList.remove('hidden');
+      avatarButton?.classList.add('hidden');
+      dropdownMenu?.classList.add('hidden');
+    }
+  });
+
+  // Toggle dropdown
+  avatarButton?.addEventListener('click', () => {
+    dropdownMenu?.classList.toggle('hidden');
+  });
+
+  // Handle logout
+  document.getElementById('logoutButton')?.addEventListener('click', () => {
+    logout();
+    dropdownMenu?.classList.add('hidden');
+  });
+
+  // Show login modal
+  loginButton?.addEventListener('click', () => {
+    window.toggleLoginModal(true);
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!avatarButton?.contains(e.target as Node)) {
+      dropdownMenu?.classList.add('hidden');
+    }
+  });
+</script>
